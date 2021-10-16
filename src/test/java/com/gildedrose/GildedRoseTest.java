@@ -18,6 +18,7 @@ class GildedRoseTest {
         GildedRose app = new GildedRose(items);
         app.updateQuality();
         assertEquals("foo", app.items[0].name);
+        assertEquals("foo, -1, 0", app.items[0].toString());
     }
 
     //La calidad de un artículo nunca es negativa
