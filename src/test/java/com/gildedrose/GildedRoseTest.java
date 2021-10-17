@@ -22,6 +22,39 @@ class GildedRoseTest {
         assertEquals("foo, -1, 0", app.items[0].toString());
     }
 
+    //el numero de días para vender el item se decrementa cada dia
+    @Test
+    void normalItemSellinDecreasesDaoly() {
+        Item[] items = new Item[] { new Item(NORMAL, 0, 1) };
+        GildedRose app = new GildedRose(items);
+        app.updateQuality();
+        assertEquals(-1, app.items[0].sellIn);
+    }
+
+    @Test
+    void agedBrieItemSellinDecreasesDaoly() {
+        Item[] items = new Item[] { new Item(AGED_BRIE, 0, 1) };
+        GildedRose app = new GildedRose(items);
+        app.updateQuality();
+        assertEquals(-1, app.items[0].sellIn);
+    }
+
+    @Test
+    void backstageItemSellinDecreasesDaoly() {
+        Item[] items = new Item[] { new Item(BACKSTAGE_PASSES, 0, 1) };
+        GildedRose app = new GildedRose(items);
+        app.updateQuality();
+        assertEquals(-1, app.items[0].sellIn);
+    }
+
+    @Test
+    void conjuredItemSellinDecreasesDaoly() {
+        Item[] items = new Item[] { new Item(CONJURED, 0, 1) };
+        GildedRose app = new GildedRose(items);
+        app.updateQuality();
+        assertEquals(-1, app.items[0].sellIn);
+    }
+
     //La calidad de un artículo nunca es negativa
     @Test
     void normalItemQualityIsNeverNegative() {
@@ -136,6 +169,5 @@ class GildedRoseTest {
         app.updateQuality();
         assertEquals(6, app.items[0].quality);
     }
-
 
 }
