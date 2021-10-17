@@ -10,6 +10,7 @@ class GildedRoseTest {
     private final String AGED_BRIE = "Aged Brie";
     private final String BACKSTAGE_PASSES = "Backstage passes to a TAFKAL80ETC concert";
     private final String SULFURAS = "Sulfuras, Hand of Ragnaros";
+    private final String CONJURED = "Conjured";
 
 
     @Test
@@ -119,7 +120,22 @@ class GildedRoseTest {
         assertEquals(0, app.items[0].quality);
     }
 
-    //TODO: Los artículos conjurados degradan su calidad al doble de velocidad que los normales
+    //Los artículos conjurados degradan su calidad al doble de velocidad que los normales
+    @Test
+    void conjuredDecreesesQualityByTwoBeforeMaximunDate() {
+        Item[] items = new Item[] { new Item(CONJURED, 5, 10) };
+        GildedRose app = new GildedRose(items);
+        app.updateQuality();
+        assertEquals(8, app.items[0].quality);
+    }
+
+    @Test
+    void conjuredDecreesesQualityByTwoAfterMaximunDate() {
+        Item[] items = new Item[] { new Item(CONJURED, 0, 10) };
+        GildedRose app = new GildedRose(items);
+        app.updateQuality();
+        assertEquals(6, app.items[0].quality);
+    }
 
 
 }

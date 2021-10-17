@@ -46,6 +46,18 @@ class GildedRose {
             if (item.sellIn < 0) {
                 item.quality = item.quality - item.quality;
             }
+
+        } else if (isConjured(item)){
+            item.sellIn = item.sellIn - 1;
+            if (item.quality > 0) {
+                item.quality = item.quality - 2;
+            }
+
+            if (item.sellIn < 0) {
+                if (item.quality > 0) {
+                    item.quality = item.quality - 2;
+                }
+            }
         } else if (isSulfuras(item)) {
 
         } else {
@@ -73,5 +85,9 @@ class GildedRose {
 
     private boolean isAgedBrie(Item item) {
         return item.name.equals("Aged Brie");
+    }
+
+    private boolean isConjured(Item item) {
+        return item.name.equals("Conjured");
     }
 }
